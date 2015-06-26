@@ -5,7 +5,8 @@
 
 class Esfera:public osg::Geode{
 public:
-    Esfera();  
+	Esfera();
+    Esfera(float posX, float posY, float posZ, float radio);  
 };
 
 #endif

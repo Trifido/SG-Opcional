@@ -11,7 +11,8 @@
 
 #include "Esfera.h"
 
-class Scene:public osg::Group{
+class Scene:public osg::Group
+{
 	private:
 		osg::ref_ptr<Esfera> background;
 		osg::ref_ptr<osg::MatrixTransform> sBack;
