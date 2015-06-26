@@ -7,7 +7,7 @@ Scene::Scene(){
 	sBack = new osg::MatrixTransform();
 	addBackground();
 	addTextures();
-	/*
+	
 	//SOL
 	this->addChild(new Astro(1, 0.0f, 0.0f, 0.0f, 20.0f, 0.0f));
 
@@ -72,7 +72,7 @@ Scene::Scene(){
 
 	neptuno.addSatelite(triton);
 	this->addChild(neptuno.asGroup());
-	*/
+	
 }
 
 void Scene::addBackground(){

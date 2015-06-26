@@ -20,6 +20,6 @@ class Scene:public osg::Group
 		void addTextures();
 	public:
 		Scene();	
-}
+};
 
 #endif

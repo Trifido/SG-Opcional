@@ -1,14 +1,15 @@
 #ifndef ASTRO_H
 #define ASTRO_H
 
+
+#include "Esfera.h"
+
 #include <osg/MatrixTransform>
 #include <osg/Texture2D>
 #include <osg/Group>
 #include <osg/Node>
 
 #include <osgViewer/Viewer>
-
-#include "Esfera.h"
 
 
 class Astro:public osg::Group 
@@ -28,6 +29,6 @@ class Astro:public osg::Group
 		Astro(int id, float posX, float posY, float posZ, float vRotEje, float vTras);
 		void addSatelite(Astro satelite);
 		//void addAnillo(Anillo ring);
-}
+};
 
 #endif
