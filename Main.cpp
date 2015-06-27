@@ -10,24 +10,32 @@
 #include <osg/PositionAttitudeTransform>
 #include <osgGA/TrackballManipulator>
 
+#include "Scene.h"
+#include "Astro.h"
+#include <new>
+
 using namespace osg;
 
 int main()
 {
     osgViewer::Viewer viewer;
     osg::ref_ptr<osg::Group> root = new osg::Group;
-	osg::ref_ptr<osg::Geode> pyramidGeode = new osg::Geode;
-	osg::ref_ptr<osg::Geometry> pyramidGeometry = new osg::Geometry;
-	osg::ref_ptr<osg::Node> node = new osg::Node;
+	//osg::ref_ptr<osg::Geode> pyramidGeode = new osg::Geode;
+	//osg::ref_ptr<osg::Geometry> pyramidGeometry = new osg::Geometry;
+	//osg::ref_ptr<osg::Node> node = new osg::Node;
 
     //Associate the pyramid geometry with the pyramid geode
     //   Add the pyramid geode to the root node of the scene graph.
 
-	pyramidGeode->addDrawable(pyramidGeometry.get());
-	root->addChild(pyramidGeode.get());
+	//pyramidGeode->addDrawable(pyramidGeometry.get());
+	//root->addChild(pyramidGeode.get());
 
 
-	Sphere esferita();
+	osg::ref_ptr<Astro> astro = new Astro("tierra", 1.5f, 50.0f, 0.0f, 0.0f, 10000.0f, 30000.0f);
+	//osg::ref_ptr<Esfera> esfera= new Esfera();
+
+	//root->addChild(esfera);
+	//viewer.setSceneData(escena);
 	
 	/*osg::ref_ptr<osg::Sphere> geo = new osg::Sphere(osg::Vec3(0.0f,0.0f,0.0f), 1);
 	osg::ref_ptr<osg::ShapeDrawable> draw = new osg::ShapeDrawable(geo);//crear drawable
@@ -47,7 +55,7 @@ int main()
     root->getOrCreateStateSet()->setMode(GL_LIGHTING, osg::StateAttribute::OFF);
 
     //The final step is to set up and enter a simulation loop.
-    viewer.setSceneData( root );
+    viewer.setSceneData( astro );
     viewer.setCameraManipulator(new osgGA::TrackballManipulator());
     viewer.realize();
 
