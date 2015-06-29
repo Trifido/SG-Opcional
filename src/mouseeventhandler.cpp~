@@ -1,0 +1,63 @@
+#ifndef MOUSEEVENTHANDLER_H
+#define MOUSEEVENTHANDLER_H
+
+#include <osg
+
+class MouseEventHandler : public osgGA::GUIEventHandler {
+	protected: 
+		float _mX, _mY;
+  
+    public:
+	    MouseEventHandler(osgART::Scene* scene) : osgGA::GUIEventHandler() {_scene=scene;}
+ 		bool handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa);
+};
+
+#endif
+
+	bool MouseEventHandler::handle(const osgGA::GUIEventAdapter& ea, osgGA::GUIActionAdapter& aa) {
+		if (ea.getEventType()!=osgGA::GUIEventAdapter::RELEASE ||
+			ea.getButton()!=osgGA::GUIEventAdapter::LEFT_MOUSE_BUTTON ||
+			!(ea.getModKeyMask()&osgGA::GUIEventAdapter::MODKEY_CTRL))
+				return false;
+	
+		osgViewer::Viewer* viewer= dynamic_cast<osgViewer::Viewer*>(&aa);
+		if (viewer) {
+			osg::ref_ptr<osgUtil::LineSegmentIntersector> intersector=
+			new osgUtil::LineSegmentIntersector(osgUtil::Intersector::WINDOW, ea.getX(), ea.getY());
+			osgUtil::IntersectionVisitor iv(intersector.get());
+			// Sólo recorrer aquellos nodos con nodeMask=0x1
+			iv.setTraversalMask(~0x1);
+			viewer->getCamera()->accept(iv);
+			if (intersector->containsIntersections()) {
+				osgUtil::LineSegmentIntersector::Intersection& elegido= *(intersector->getIntersections().begin());
+			// Hagamos lo que tengamos que hacer...
+			}
+		}
+		return false;
+	}
+ 
+ 
+                    /** Here we search the NodePath for the node of interest.
+                        This is where we can make use of our node naming.
+ 
+                        If we find the Transform node named "CAR", we obtain its
+                        AnimationPathCallback - if it is currently paused
+                        we "un-pause" it, and vice-versa. **/
+                    for (int i = 0; i <= nP.size(); i++) {
+                        if (nP[i]->getName() == "CAR") {
+                            osg::AnimationPathCallback* cb = 
+                                dynamic_cast<osg::AnimationPathCallback*>(nP[i]->getUpdateCallback());
+ 
+                            if (cb->getPause()==true)
+                                cb->setPause(false);
+                            else cb->setPause(true);
+ 
+                            return true;
+                        }
+                    }
+                }
+            } 
+            default: return false;
+        } 
+    } 
+};
